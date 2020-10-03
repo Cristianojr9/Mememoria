@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="79.692" height="80.692" viewBox="0 0 79.692 80.692">
+  <g id="Grupo_8" data-name="Grupo 8" transform="translate(-31.154 -6.154)">
+    <g id="cloud" transform="translate(31.154 6.154)">
+      <path id="Caminho_43" data-name="Caminho 43" d="M0,0H79.692V80.692H0Z" fill="rgba(0,0,0,0)"/>
+      <path id="Caminho_44" data-name="Caminho 44" d="M17.917,48.285C9.289,48.285,2.3,41.595,2.3,33.343S9.289,18.4,17.917,18.4h0C19.954,9.323,29.783,3.45,39.869,5.284S56.48,15.964,54.442,25.041h3.32a11.622,11.622,0,0,1,0,23.244H17.917" transform="translate(5.327 11.936)" fill="#fffff8" stroke="#06b781" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    </g>
+    <path id="Caminho_46" data-name="Caminho 46" d="M24.025,15.924,14.47,25.388,4.915,15.924m0,0A6.37,6.37,0,1,1,14.47,7.559a6.37,6.37,0,1,1,9.555,8.373" transform="translate(56.53 35.496)" fill="#06b781"/>
+  </g>
+</svg>
