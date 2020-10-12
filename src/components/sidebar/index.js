@@ -16,7 +16,9 @@ export default function Leftbar() {
   return (
     <Container>
       <Content>
-        <img src={Logo} alt="" />
+        <Link to="/profile">
+          <img src={Logo} alt="" />
+        </Link>
         <label>
           <img src={Upload} alt="" />
           Enviar memorias
@@ -28,31 +30,31 @@ export default function Leftbar() {
       </Content>
       <Options>
         <ul>
-          <Link>
+          <Link to="/profile/memorias">
             <img src={Heart} alt="" />
             Minhas memórias
         </Link>
         </ul>
         <ul>
-          <Link>
+          <Link to="/profile/diario">
             <img src={Book} alt="" />
             Diário
         </Link>
         </ul>
         <ul>
-          <Link>
+          <Link to="/profile/memorial">
             <img src={License} alt="" />
             Memorial
         </Link>
         </ul>
         <ul>
-          <Link>
+          <Link to="/profile/memoria-recentes">
             <img src={Clock} alt="" />
             Memórias recentes
         </Link>
         </ul>
         <ul>
-          <Link>
+          <Link to="/profile/lixeira">
             <img src={Trash} alt="" />
             Lixeira
         </Link>

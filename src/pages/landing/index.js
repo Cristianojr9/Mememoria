@@ -1,15 +1,13 @@
 import React from 'react';
-import Header from '../../components/header/';
 
-import { Link } from 'react-router-dom';
+import components from '../../components';
+
+const { Header } = components;
 
 export default function Landing() {
   return (
     <div>
       <Header />
-      <div>
-        <Link to="/register">Register</Link>
-      </div>
     </div >
   )
 }

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { shade } from 'polished';
 
 export const Container = styled.div`
+  position: relative;
   width: 392px;
   height: 100vh;
   max-width: 492px;
@@ -56,6 +57,10 @@ export const Options = styled.div`
   ul {
     img {
       margin-right: 15px;
+
+      &:focus {
+        fill: #06B781;
+      }
     }
 
     a {
@@ -67,7 +72,7 @@ export const Options = styled.div`
       color: #33353A;
       transition: 0.2s;
 
-      &:hover {
+      &:focus {
         color: #06B781;
       }
     }

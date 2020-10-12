@@ -1,11 +1,13 @@
 import React from 'react'
 
-import Leftbar from '../../components/leftbar';
+import components from '../../components';
+
+const { Sidebar } = components;
 
 export default function Profile() {
   return (
     <div>
-      <Leftbar />
+      <Sidebar />
     </div>
   )
 }
