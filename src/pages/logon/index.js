@@ -1,16 +1,28 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { Form, Input } from '@rocketseat/unform';
+import * as Yup from 'yup';
+
 import { toast } from 'react-toastify';
 
 import { FcGoogle } from 'react-icons/fc';
 
 import Logo from '../../assets/logo.svg';
 
-import { Container, Content, Background, Button, ButtonGoogle } from './styles';
+import { Container, Content, Background, ButtonGoogle } from './styles';
+
+import api from '../../services/api';
+
+const schema = Yup.object().shape({
+  email: Yup.string()
+    .email('Insira um e-mail válido')
+    .required('O e-mail é obrigatório'),
+  password: Yup.string().required('A senha é obrigatória')
+})
 
 function Logon() {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [passwordKey, setPasswordKey] = useState('');
 
   const history = useHistory();
 
@@ -19,13 +31,19 @@ function Logon() {
   }
 
   async function handleLogin(e) {
-    e.preventDefault();
+    const data = {
+      email,
+      passwordKey,
+    };
 
     try {
-      //const response = await api.post('sessions', { id });
+      const response = await api.post('login', data);
 
-      //localStorage.setItem('ongId', id);
-      //localStorage.setItem('ongName', response.data.name);
+      localStorage.setItem('email', email);
+      localStorage.setItem('passwordKey', passwordKey);
+      localStorage.setItem('token', response.data.bearer);
+
+      toast.success(`Seja bem-vindo: ${response.data.firstName}`);
       history.push('/profile');
     } catch (err) {
       toast.error('Falha no login, tente novamente');
@@ -39,7 +57,7 @@ function Logon() {
           <Link to="/">
             <img src={Logo} alt="" />
           </Link>
-          <form onSubmit={handleLogin}>
+          <Form schema={schema} onSubmit={handleLogin}>
             <ButtonGoogle onClick={handleGoogle}>
               <FcGoogle size={50} />
               Login com o Google
@@ -49,18 +67,18 @@ function Logon() {
               Ou
             </span>
 
-            <input
+            <Input
+              name="email"
               type="email"
               placeholder="Email"
-              maxlength="150"
-              required
+              onChange={e => setEmail(e.target.value)}
             />
 
-            <input
+            <Input
+              name="password"
               type="password"
               placeholder="Senha"
-              maxlength="15"
-              required
+              onChange={e => setPasswordKey(e.target.value)}
             />
 
             <div>
@@ -79,14 +97,13 @@ function Logon() {
               </span>
             </div>
 
-
-            <Button type="submit" onClick={handleLogin}>Login</Button>
+            <button type="submit">Login</button>
 
             <span>
               Ainda não possui conta?
               <Link to="/register">Cadastre-se aqui</Link>
             </span>
-          </form>
+          </Form>
         </Content>
         <Background />
       </Container>

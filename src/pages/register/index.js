@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+
 import { toast } from 'react-toastify';
 
 import { FcGoogle } from 'react-icons/fc';
 
 import Logo from '../../assets/logo.svg';
 
-import { Container, Content, Background, Button, ButtonGoogle } from './styles';
+import { Container, Content, Background, ButtonGoogle } from './styles';
+
+import api from '../../services/api';
 
 function Register() {
-  const [name, setName] = useState('');
+  const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [passwordKey, setPasswordKey] = useState('');
 
   const history = useHistory();
 
@@ -20,26 +23,24 @@ function Register() {
     toast.error('Funcionalidade em andamento')
   }
 
-  function handleLogon() {
-    toast.error('Funcionalidade em andamento')
-  }
-
   async function handleRegister(e) {
     e.preventDefault();
 
     const data = {
-      name,
+      firstName,
       lastName,
       email,
-      password,
+      passwordKey,
     };
 
     try {
-      //const response = await api.post('/users', data);
+      const response = await api.post('/sign-in', data);
 
-      //toast.success(`Seja bem-vindo: ${response.data.name}`);
+      toast.success(`Cadastro realizado, ${response.data.firstName}, Bem vindo!`, {
+        position: toast.POSITION.TOP_LEFT
+      });
 
-      history.push('/profile');
+      history.push('/login');
     } catch (err) {
       toast.error('Erro no cadastro, tente novamente');
     }
@@ -67,34 +68,33 @@ function Register() {
               <input
                 type="name"
                 placeholder="Nome"
-                maxlength="150"
                 required
-                pattern="[A-Za-z ']{4,}"
+                onChange={e => setFirstName(e.target.value)}
               />
               <input
                 type="name"
                 placeholder="Sobrenome"
-                maxlength="150"
                 required
-                pattern="[A-Za-z ']{4,}"
+                onChange={e => setLastName(e.target.value)}
               />
             </div>
 
             <input
               type="email"
               placeholder="Email"
-              maxlength="150"
               required
+              onChange={e => setEmail(e.target.value)}
             />
 
             <input
               type="password"
               placeholder="Senha"
-              maxlength="15"
               required
+              onChange={e => setPasswordKey(e.target.value)}
             />
 
-            <Button type="submit">Cadastre-se</Button>
+            <button type="submit">Cadastre-se</button>
+
             <span>
               Já possui conta?
               <Link to="/login">Entre agora</Link>

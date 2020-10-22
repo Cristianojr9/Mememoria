@@ -2,14 +2,14 @@ import React from 'react';
 
 import components from '../../components';
 
-const { Sidebar } = components;
+import { Container } from './styles';
 
-export default function index() {
+const { Memories } = components;
+
+export default function Memorias() {
   return (
-    <>
-      <div>
-        dsadsa
-      </div>
-    </>
+    <Container>
+      <Memories />
+    </Container>
   )
 }

@@ -1,0 +1,11 @@
+<svg id="movie" xmlns="http://www.w3.org/2000/svg" width="112.091" height="112.091" viewBox="0 0 112.091 112.091">
+  <path id="Caminho_50" data-name="Caminho 50" d="M0,0H112.091V112.091H0Z" fill="none"/>
+  <rect id="Retângulo_22" data-name="Retângulo 22" width="76" height="75" rx="2" transform="translate(17.821 18.376)" fill="none" stroke="#af52de" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+  <line id="Linha_20" data-name="Linha 20" y2="75" transform="translate(37.821 18.376)" fill="none" stroke="#af52de" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+  <line id="Linha_21" data-name="Linha 21" y2="75" transform="translate(74.821 18.376)" fill="none" stroke="#af52de" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+  <line id="Linha_22" data-name="Linha 22" x2="20" transform="translate(17.821 38.376)" fill="none" stroke="#af52de" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+  <line id="Linha_23" data-name="Linha 23" x2="20" transform="translate(17.821 74.376)" fill="none" stroke="#af52de" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+  <line id="Linha_24" data-name="Linha 24" x2="76" transform="translate(17.821 56.376)" fill="none" stroke="#af52de" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+  <line id="Linha_25" data-name="Linha 25" x2="19" transform="translate(74.821 38.376)" fill="none" stroke="#af52de" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+  <line id="Linha_26" data-name="Linha 26" x2="19" transform="translate(74.821 74.376)" fill="none" stroke="#af52de" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+</svg>

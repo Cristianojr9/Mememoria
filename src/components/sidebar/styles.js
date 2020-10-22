@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 import { shade } from 'polished';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   position: relative;
   width: 392px;
+  max-width: 392px;
   height: 100vh;
   max-width: 492px;
   background: #F0F1F1;
@@ -12,6 +14,16 @@ export const Container = styled.div`
   display: grid;
   align-items: center;
   justify-content: center;
+`;
+
+export const Option = styled(Link)`
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+
+  font-size: 25px;
+  transition: 0.2s;
+  color: ${props => props.selected ? "#06B781" : "#33353A"};
 `;
 
 export const Content = styled.div`
@@ -34,7 +46,7 @@ export const Content = styled.div`
     color: #fff;
     transition: 0.2s;
     
-    img {
+    svg {
       margin-right: 10px;
     }
 
@@ -55,26 +67,8 @@ export const Options = styled.div`
   justify-content: center;
 
   ul {
-    img {
+    svg {
       margin-right: 15px;
-
-      &:focus {
-        fill: #06B781;
-      }
-    }
-
-    a {
-      margin-top: 20px;
-      display: flex;
-      align-items: center;
-
-      font-size: 25px;
-      color: #33353A;
-      transition: 0.2s;
-
-      &:focus {
-        color: #06B781;
-      }
     }
   }
 `;

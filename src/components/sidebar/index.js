@@ -1,63 +1,93 @@
-import React from 'react';
+import React, { useState } from 'react';
+//import { uniqueId } from 'lodash';
+//import filesize from 'filesize';
 
 import { Link } from 'react-router-dom';
+import { BiTrash } from 'react-icons/bi'
+import { AiOutlineClockCircle } from 'react-icons/ai';
+import { FaRegHeart } from 'react-icons/fa';
+import { RiFilePaper2Line } from 'react-icons/ri';
+import { FiUploadCloud } from 'react-icons/fi';
+import { HiOutlineBookOpen } from 'react-icons/hi';
 
 import Logo from '../../assets/logo.svg';
-import Upload from '../../assets/upload.svg';
-import Book from '../../assets/book.svg';
-import Clock from '../../assets/clock.svg';
-import Heart from '../../assets/heart.svg';
-import License from '../../assets/license.svg';
-import Trash from '../../assets/trash.svg';
 
-import { Container, Content, Options } from './styles';
+import { Container, Content, Options, Option } from './styles';
 
-export default function Leftbar() {
+//import Upload from '../../components/Upload';
+
+import api from '../../services/api';
+
+function Leftbar(props) {
+  const [selectedFile, setSelectedFile] = useState();
+
+  const token = localStorage.getItem('token');
+
+  async function handleUpload(e) {
+    setSelectedFile(e.target.files[0]);
+
+    const file = new FormData();
+    file.append('file', selectedFile);
+
+    try {
+      await api.post('my-memories/upload', file, {
+        headers: {
+          'Authorization': 'Bearer ' + token
+        }
+      })
+
+    } catch {
+      alert('Erro ao enviar, tente novamente');
+    }
+  };
+
   return (
     <Container>
       <Content>
         <Link to="/profile">
           <img src={Logo} alt="" />
         </Link>
+        {/* <Upload onUpload={handleUpload} /> */}
         <label>
-          <img src={Upload} alt="" />
+          <FiUploadCloud size={35} />
           Enviar memorias
           <input
             type="file"
-            accept="image/png, image/jpeg, audio/mp4, video/mp4"
+            accept="image/*"
+            onChange={handleUpload}
           />
         </label>
       </Content>
       <Options>
         <ul>
-          <Link to="/profile/memorias">
-            <img src={Heart} alt="" />
+          <Option to="/profile" selected={props.selected === "/profile"}>
+            <FaRegHeart size={35} />
             Minhas memórias
-        </Link>
+          </Option>
         </ul>
         <ul>
-          <Link to="/profile/diario">
-            <img src={Book} alt="" />
+          <Option to="/profile/diario" selected={props.selected === "/profile/diario"}>
+            <HiOutlineBookOpen size={35} />
             Diário
-        </Link>
+        </Option>
         </ul>
         <ul>
-          <Link to="/profile/memorial">
-            <img src={License} alt="" />
+          <Option to="/profile/memorial" selected={props.selected === "/profile/memorial"}>
+            <RiFilePaper2Line size={35} />
             Memorial
-        </Link>
+        </Option>
         </ul>
         <ul>
-          <Link to="/profile/memoria-recentes">
-            <img src={Clock} alt="" />
+          <Option to="/profile/memoria-recentes" selected={props.selected === "/profile/memoria-recentes"}>
+            <AiOutlineClockCircle size={35} />
             Memórias recentes
-        </Link>
+        </Option>
         </ul>
         <ul>
-          <Link to="/profile/lixeira">
-            <img src={Trash} alt="" />
+          <Option to="/profile/lixeira" selected={props.selected === "/profile/lixeira"}>
+            <BiTrash size={35} />
             Lixeira
-        </Link>
+        </Option>
         </ul>
       </Options>
       <div>
@@ -66,3 +96,5 @@ export default function Leftbar() {
     </Container>
   )
 }
+
+export default Leftbar;

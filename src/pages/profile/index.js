@@ -1,13 +1,32 @@
-import React from 'react'
+import React from 'react';
 
 import components from '../../components';
 
-const { Sidebar } = components;
+//import { Container } from './styles';
+//import api from '../../services/api';
 
-export default function Profile() {
+const { Sidebar, Memories } = components;
+
+
+function Profile() {
+  //const [memories, setMemories] = useState([])
+
+  /* useEffect(() => {
+    api.get('person', {
+      headers: {
+        Authorization: token,
+      }
+    }).then(response => {
+      setMemories(response.data)
+    })
+  }, [token]);
+ */
   return (
-    <div>
+    <>
       <Sidebar />
-    </div>
+      {/* <Memories /> */}
+    </>
   )
 }
+
+export default Profile;

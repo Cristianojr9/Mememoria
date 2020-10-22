@@ -53,6 +53,36 @@ export const Content = styled.div`
     margin: 10px 0; 
     text-align: center;
 
+    button {
+      width: 588px;
+      height: 90px;
+      border-radius: 15px;
+      margin-top: 10px;
+      border-color: transparent;
+      background: #06B781;
+      color: white;
+      font-size: 30px;
+      font-weight: normal;
+      box-shadow: 0px 3px 6px #1111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: 0.4s;
+
+      &:hover {
+        background-color: ${shade(0.2, '#06B781')};
+      }
+
+      @media (max-width: 780px) {
+        & {
+          animation: 0.5s;
+          width: 400px;
+          height: 90px;
+        }
+      }
+    }
+
     h1 {
       font-weight: bold;
       color: #111;
@@ -262,36 +292,6 @@ export const ButtonGoogle = styled.div`
   }
 
   
-  @media (max-width: 780px) {
-    & {
-      animation: 0.5s;
-      width: 400px;
-      height: 90px;
-    }
-  }
-`;
-
-export const Button = styled.div`
-  width: 588px;
-  height: 90px;
-  border-radius: 15px;
-  margin-top: 10px;
-  border-color: transparent;
-  background: #06B781;
-  color: white;
-  font-size: 30px;
-  font-weight: normal;
-  box-shadow: 0px 3px 6px #1111;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: 0.4s;
-
-  &:hover {
-    background-color: ${shade(0.2, '#06B781')};
-  }
-
   @media (max-width: 780px) {
     & {
       animation: 0.5s;
