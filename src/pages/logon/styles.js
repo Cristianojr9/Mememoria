@@ -1,51 +1,96 @@
 import styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
-import { fadeInLeftBig } from 'react-animations';
+import { fadeIn } from 'react-animations';
 
-import BackgroundImg from '../../assets/login.png';
+import BackgroundImg from '../../assets/loginBackground.png';
 
-const fadeInLeftAnimation = keyframes`${fadeInLeftBig}`;
+const fadeInLeftAnimation = keyframes`${fadeIn}`;
 
 export const Container = styled.div`
   height: 100vh;
   display: flex;
   align-items: stretch;
   background: #FCFCFC;
+
+  a {
+    color: #06B781;
+    font-size: 20px;
+    text-decoration: underline;
+    margin-top: 15px;
+    font-weight: 500;
+    font-style: italic;
+    margin-left: 10px;
+    transition: 0.5s;
+    margin-left: 20px;
+    position: absolute;
+
+    &:hover {
+      color: ${shade(0.2, '#06B781')};
+    }
+
+    @media (max-width: 780px) {
+      & {
+        animation: 1s;
+        font-size: 20px;
+      }
+    }
+  }
 `;
 
 export const Content = styled.div`
-  animation: 0.5s ${fadeInLeftAnimation};
+  animation: 1s ${fadeInLeftAnimation};
   display: flex;
   flex-direction: column;
   align-items: center;
   
   place-content: center;
   width: 100%;
-  max-width: 1000px;
+  max-width: 62.5rem;
 
   @media (max-width: 780px) {
     & {
       animation: 1s ${fadeInLeftAnimation};
       width: 100%;
+      height: 100vh;
       margin-left: 20%;
       margin-right: 20%;
-      max-width: 220px;
     }
   }
+
+  @media (max-width: 400px) {
+    & {
+      animation: 1s ${fadeInLeftAnimation};
+      width: 100%;
+      padding: 20% 0 20%;
+      margin-left: 2.5rem;
+    }
+  }
+
 
   @media (max-width: 950px) {
     & {
       animation: 1s ${fadeInLeftAnimation};
       width: 100%;
-      margin-left: 20%;
-      margin-right: 20%;
-      max-width: 246px;
+      padding: 20% 0 20%;
     }
   }
 
   img { 
-    margin-right: 80%;
     margin-top: 0px;
+    
+    @media (max-width: 400px) {
+      & {
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+
+  h1 {
+    font-weight: bold;
+    color: #111;
+    margin-bottom: 24px;
+    font-size: 40px;
   }
 
   form {
@@ -76,18 +121,19 @@ export const Content = styled.div`
 
       @media (max-width: 780px) {
         & {
-          animation: 0.5s;
-          width: 400px;
+          animation: 1s;
+          width: 500px;
           height: 90px;
         }
       }
-    }
 
-    h1 {
-      font-weight: bold;
-      color: #111;
-      margin-bottom: 24px;
-      font-size: 50px;
+      @media (max-width: 400px) {
+        & {
+          animation: 1s;
+          width: 300px;
+          height: 90px;
+        }
+      }
     }
 
     input {
@@ -110,7 +156,15 @@ export const Content = styled.div`
       @media (max-width: 780px) {
         & {
           animation: 0.5s;
-          width: 400px;
+          width: 500px;
+          height: 90px;
+        }
+      }
+
+      @media (max-width: 400px) {
+        & {
+          animation: 1s;
+          width: 300px;
           height: 90px;
         }
       }
@@ -136,7 +190,15 @@ export const Content = styled.div`
       @media (max-width: 780px) {
         & {
           animation: 0.5s;
-          width: 400px;
+          width: 500px;
+          height: 90px;
+        }
+      }
+
+      @media (max-width: 400px) {
+        & {
+          animation: 1s;
+          width: 300px;
           height: 90px;
         }
       }
@@ -166,6 +228,7 @@ export const Content = styled.div`
       font-style: italic;
       margin-left: 10px;
       transition: 0.5s;
+      position: relative;
 
       &:hover {
         color: ${shade(0.2, '#06B781')};
@@ -173,7 +236,7 @@ export const Content = styled.div`
 
       @media (max-width: 780px) {
         & {
-          animation: 0.5s;
+          animation: 1s;
           font-size: 20px;
         }
       }
@@ -192,13 +255,21 @@ export const Content = styled.div`
         font-size: 20px;
         font-weight: normal;
         color: #595D5C;
-        margin-top: 0px;
+        margin-top: -10px;
 
         @media (max-width: 780px) {
           & {
-            animation: 0.5s;
+            animation: 1s;
             font-size: 15px;
             margin-left: 170px; 
+          }
+        }
+
+        @media (max-width: 400px) {
+          & {
+            animation: 0.5s;
+            margin-left: 60px;
+            font-size: 13px;
           }
         }
       }
@@ -213,7 +284,7 @@ export const Content = styled.div`
 
           @media (max-width: 780px) {
             & {
-              animation: 0.5s;
+              animation: 1s;
               font-size: 15px;
             }
           }
@@ -253,7 +324,7 @@ export const Content = styled.div`
 
         p {
           font-size: 20px;
-          margin-top: 0px;
+          margin-top: 10px;
           margin-left: 10px;
 
           @media (max-width: 780px) {
@@ -294,9 +365,18 @@ export const ButtonGoogle = styled.div`
   
   @media (max-width: 780px) {
     & {
-      animation: 0.5s;
-      width: 400px;
+      animation: 1s;
+      width: 500px;
       height: 90px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    & {
+      animation: 1s;
+      width: 300px;
+      height: 90px;
+      font-size: 18px;
     }
   }
 `;

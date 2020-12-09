@@ -15,22 +15,22 @@ export default function Header() {
       <NavLinks>
         <ul>
           <li>
-            <Link>
+            <Link to='/'>
               home
             </Link>
           </li>
           <li>
-            <Link>
+            <Link to='/'>
               home
             </Link>
           </li>
           <li>
-            <Link>
+            <Link to='/'>
               home
             </Link>
           </li>
           <li>
-            <Link>
+            <Link to='/'>
               home
             </Link>
           </li>

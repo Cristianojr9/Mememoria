@@ -1,4 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+
+import IconMovie from '../../assets/movie';
+import IconPhoto from '../../assets/photo';
+import IconFolder from '../../assets/folder';
+import IconMusic from '../../assets/file-music';
+import IconText from '../../assets/file-text'
+import api from '../../services/api';
 
 import {
   Container,
@@ -6,23 +14,77 @@ import {
 }
   from './styles';
 
-import { BiMovie } from 'react-icons/bi'
+export default function Memories(props) {
+  const [previewImg, setPreviewImg] = useState();
 
-//import Movie from '../../assets/movie.svg';
+  const history = useHistory();
 
-export default function Memories() {
+  function ShowDetail(e) {
+    e.preventDefault();
+    history.push(`/profile/pastas/${props.id}`)
+  }
+
+  function ShowDetailMemorie(e) {
+    e.preventDefault();
+    history.push(`/profile/memoria/${props.id}`)
+  }
+
+  useEffect(() => {
+    async function getPreview() {
+      api.get(`my-memories/memory/${props.id}/view`, { responseType: 'blob' })
+        .then(response => {
+          let imageNode = document.getElementById('image');
+          let imgUrl = URL.createObjectURL(response.data)
+          setPreviewImg(imgUrl);
+        });
+    }
+    getPreview();
+  }, [props.id]);
+
+  function handleClick(e) {
+    if (e.type === 'click' && props.preview === 'dir') {
+      ShowDetail(e);
+    } else if (e.type === 'click') {
+      ShowDetailMemorie(e);
+    }
+  }
+
+  //props.preview === 'dir' ? ShowDetail : ShowDetailMemorie
+
   return (
     <Container>
       <li>
-        <MemoriesInfo>
+        <MemoriesInfo onClick={handleClick} onContextMenu={handleClick}>
           <span>
-            <BiMovie color={'#AF52DE'} size={150} />
+            {props.preview === 'image/jpeg' ?
+              <img src={previewImg} alt="" /> :
+              props.preview === 'dir' ?
+                <IconFolder size={140} color={'#FFC02F'} /> :
+                props.preview === 'video/mp4' ?
+                  <div className="icon">
+                    <IconMovie size={140} color={'#AF52DE'} />
+                  </div> :
+                  props.preview === 'application/pdf' ?
+                    <IconText size={140} color={'#2832D3'} /> :
+                    <IconMusic size={140} color={'#FF5921'} />
+            }
           </span>
           <div>
             <span>
-              <BiMovie color={'#AF52DE'} size={40} />
+              {props.preview === 'image/jpeg' ?
+                <IconPhoto size={40} color={'#FF1417'} /> :
+                props.preview === 'dir' ?
+                  <IconFolder size={40} color={'#FFC02F'} /> :
+                  props.preview === 'video/mp4' ?
+                    <div className="icon">
+                      <IconMovie size={40} color={'#AF52DE'} />
+                    </div> :
+                    props.preview === 'application/pdf' ?
+                      <IconText size={40} color={'#2832D3'} /> :
+                      <IconMusic size={40} color={'#FF5921'} />
+              }
             </span>
-            <strong>Lições de vida #7</strong>
+            <strong>{props.name}</strong>
           </div>
         </MemoriesInfo>
       </li>

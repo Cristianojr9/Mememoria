@@ -1,17 +1,14 @@
-import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 
-import { toast } from 'react-toastify';
+import { signInRequest } from '../../store/modules/auth/actions';
 
-import { FcGoogle } from 'react-icons/fc';
+import Logo from '../../assets/logo1.svg';
 
-import Logo from '../../assets/logo.svg';
-
-import { Container, Content, Background, ButtonGoogle } from './styles';
-
-import api from '../../services/api';
+import { Container, Content, Background } from './styles';
 
 const schema = Yup.object().shape({
   email: Yup.string()
@@ -21,64 +18,43 @@ const schema = Yup.object().shape({
 })
 
 function Logon() {
-  const [email, setEmail] = useState('');
-  const [passwordKey, setPasswordKey] = useState('');
+  /* const [email, setEmail] = useState('');
+  const [passwordKey, setPasswordKey] = useState(''); */
+  const loading = useSelector(state => state.auth.loading);
+  const dispath = useDispatch();
 
-  const history = useHistory();
-
-  function handleGoogle() {
-    toast.error('Funcionalidade em andamento')
-  }
-
-  async function handleLogin(e) {
-    const data = {
-      email,
-      passwordKey,
-    };
-
-    try {
-      const response = await api.post('login', data);
-
-      localStorage.setItem('email', email);
-      localStorage.setItem('passwordKey', passwordKey);
-      localStorage.setItem('token', response.data.bearer);
-
-      toast.success(`Seja bem-vindo: ${response.data.firstName}`);
-      history.push('/profile');
-    } catch (err) {
-      toast.error('Falha no login, tente novamente');
-    }
+  async function handleSubmit({ email, password }) {
+    dispath(signInRequest(email, password));
   }
 
   return (
     <>
       <Container>
+        <Link to="/">
+          <img src={Logo} alt="" />
+        </Link>
         <Content>
-          <Link to="/">
-            <img src={Logo} alt="" />
-          </Link>
-          <Form schema={schema} onSubmit={handleLogin}>
-            <ButtonGoogle onClick={handleGoogle}>
+
+          <h1>Login</h1>
+          <Form schema={schema} onSubmit={handleSubmit}>
+            {/* <ButtonGoogle onClick={handleGoogle}>
               <FcGoogle size={50} />
               Login com o Google
             </ButtonGoogle>
 
             <span>
               Ou
-            </span>
-
+            </span> */}
             <Input
               name="email"
               type="email"
               placeholder="Email"
-              onChange={e => setEmail(e.target.value)}
             />
 
             <Input
               name="password"
               type="password"
               placeholder="Senha"
-              onChange={e => setPasswordKey(e.target.value)}
             />
 
             <div>
@@ -93,11 +69,11 @@ function Logon() {
 
               <span>
                 Esqueceu sua senha?
-                <Link to="/login" onClick={handleGoogle}>Clique aqui</Link>
+                <Link to="/forget-password">Clique aqui</Link>
               </span>
             </div>
 
-            <button type="submit">Login</button>
+            <button type="submit">{loading ? 'Carregando...' : 'Login'}</button>
 
             <span>
               Ainda não possui conta?

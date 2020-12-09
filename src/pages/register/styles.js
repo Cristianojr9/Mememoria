@@ -1,16 +1,21 @@
 import styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
-import { fadeInRightBig } from 'react-animations';
+import { fadeIn } from 'react-animations';
 
-import BackgroundImg from '../../assets/login.png';
+import BackgroundImg from '../../assets/registerBackground.png';
 
-const fadeInRightAnimation = keyframes`${fadeInRightBig}`;
+const fadeInRightAnimation = keyframes`${fadeIn}`;
 
 export const Container = styled.div`
   height: 100vh;
   display: flex;
   align-items: stretch;
   background: #FCFCFC;
+
+  a {
+    margin-left: 1820px;
+    position: absolute;
+  }
 `;
 
 export const Content = styled.div`
@@ -40,6 +45,39 @@ export const Content = styled.div`
       & {
         animation: 0.5s;
         margin-top: 60px;
+      }
+    }
+  }
+
+  span {
+    margin-top: 35px;
+    font-size: 20px;
+    color: #595D5C;
+    font-weight: normal;
+
+    @media (max-width: 780px) {
+      & {
+        animation: 0.5s;
+        font-size: 20px;
+        margin-right: 30px;
+      }
+    }
+  }
+
+  a {
+    color: #06B781;
+    font-size: 20px;
+    text-decoration: underline;
+    margin-top: 15px;
+    font-weight: 500;
+    font-style: italic;
+    margin-left: 10px;
+    position: relative;
+
+    @media (max-width: 780px) {
+      & {
+        animation: 0.5s;
+        font-size: 20px;
       }
     }
   }
@@ -83,7 +121,7 @@ export const Content = styled.div`
       font-weight: bold;
       color: #111;
       margin-bottom: 24px;
-      font-size: 50px;
+      font-size: 40px;
     }
 
     small {
@@ -154,38 +192,6 @@ export const Content = styled.div`
             width: 400px;
             height: 90px;
           }
-        }
-      }
-    }
-
-    span {
-      margin-top: 35px;
-      font-size: 20px;
-      color: #595D5C;
-      font-weight: normal;
-
-      @media (max-width: 780px) {
-        & {
-          animation: 0.5s;
-          font-size: 20px;
-          margin-right: 30px;
-        }
-      }
-    }
-
-    a {
-      color: #06B781;
-      font-size: 20px;
-      text-decoration: underline;
-      margin-top: 15px;
-      font-weight: 500;
-      font-style: italic;
-      margin-left: 10px;
-
-      @media (max-width: 780px) {
-        & {
-          animation: 0.5s;
-          font-size: 20px;
         }
       }
     }

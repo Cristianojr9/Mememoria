@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-//import { uniqueId } from 'lodash';
-//import filesize from 'filesize';
+
+import Modal from '../../components/modal';
+
 
 import { Link } from 'react-router-dom';
 import { BiTrash } from 'react-icons/bi'
@@ -14,32 +15,25 @@ import Logo from '../../assets/logo.svg';
 
 import { Container, Content, Options, Option } from './styles';
 
-//import Upload from '../../components/Upload';
+function Sidebar(props) {
+  const [modalShow, setModalShow] = useState(false);
+  /* const [value, setValue] = useState('');
+  const [total, setTotal] = useState(''); */
 
-import api from '../../services/api';
-
-function Leftbar(props) {
-  const [selectedFile, setSelectedFile] = useState();
-
-  const token = localStorage.getItem('token');
-
-  async function handleUpload(e) {
-    setSelectedFile(e.target.files[0]);
-
-    const file = new FormData();
-    file.append('file', selectedFile);
-
-    try {
-      await api.post('my-memories/upload', file, {
-        headers: {
-          'Authorization': 'Bearer ' + token
-        }
-      })
-
-    } catch {
-      alert('Erro ao enviar, tente novamente');
+  /* useEffect(() => {
+    async function loadMemories() {
+      try {
+        api.get('my-memories').then(response => {
+          setValue(response.data);
+          const progress = value * 100 / 2000;
+          setTotal(progress);
+        });
+      } catch {
+        alert('error');
+      }
     }
-  };
+    loadMemories();
+  }); */
 
   return (
     <Container>
@@ -48,53 +42,58 @@ function Leftbar(props) {
           <img src={Logo} alt="" />
         </Link>
         {/* <Upload onUpload={handleUpload} /> */}
-        <label>
-          <FiUploadCloud size={35} />
-          Enviar memorias
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleUpload}
-          />
+        <label onClick={() => setModalShow(true)}>
+          <FiUploadCloud size={35} color='#FFFFFF' />
+          <span>Enviar memórias</span>
         </label>
       </Content>
       <Options>
         <ul>
-          <Option to="/profile" selected={props.selected === "/profile"}>
+          <Option to="/profile" selected={props.selected === "/profile"} >
             <FaRegHeart size={35} />
-            Minhas memórias
+            <span>Minhas memórias</span>
           </Option>
         </ul>
         <ul>
           <Option to="/profile/diario" selected={props.selected === "/profile/diario"}>
             <HiOutlineBookOpen size={35} />
-            Diário
-        </Option>
+            <span>Diário</span>
+          </Option>
         </ul>
         <ul>
           <Option to="/profile/memorial" selected={props.selected === "/profile/memorial"}>
             <RiFilePaper2Line size={35} />
-            Memorial
-        </Option>
+            <span>Memorial</span>
+          </Option>
         </ul>
         <ul>
-          <Option to="/profile/memoria-recentes" selected={props.selected === "/profile/memoria-recentes"}>
+          <Option to="/profile/memorias-recentes" selected={props.selected === "/profile/memorias-recentes"}>
             <AiOutlineClockCircle size={35} />
-            Memórias recentes
-        </Option>
+            <span>Memórias recentes</span>
+          </Option>
         </ul>
         <ul>
           <Option to="/profile/lixeira" selected={props.selected === "/profile/lixeira"}>
             <BiTrash size={35} />
-            Lixeira
-        </Option>
+            <span>Lixeira</span>
+          </Option>
         </ul>
       </Options>
-      <div>
-        barra
+      <div className="drive">
+        <div className="steps">
+          <span>2gb</span>
+          <span>10Gb</span>
+        </div>
+        <div className="progress-bar">
+          <div className="bar" style={{ width: /* `${total}` */ '20%' }}></div>
+        </div>
       </div>
+      <Modal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
     </Container>
   )
 }
 
-export default Leftbar;
+export default Sidebar;

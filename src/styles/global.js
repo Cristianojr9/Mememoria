@@ -8,7 +8,7 @@ export default createGlobalStyle`
     outline: 0;
   }
   body {
-    background: #fffff8;
+    background: #FCFCFC;
     -webkit-font-smoothing: antialiased;
   }
   body, input, button {
@@ -16,5 +16,8 @@ export default createGlobalStyle`
   }
   button {
     cursor: pointer;
+  }
+  a {
+    text-decoration: none;
   }
 `;
